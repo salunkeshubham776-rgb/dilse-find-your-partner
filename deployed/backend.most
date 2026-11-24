@@ -1,0 +1,454 @@
+// Version: 4.0.0
+type AccessControlState__204832294 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__175655829<Principal, UserRole__256279894>
+  };
+type Advertisement__191297534 =
+  {
+    active : Bool;
+    body : Text;
+    createdAt : Timestamp__771871407;
+    id : Id__274469729;
+    title : Text
+  };
+type Advertisement__9582083 =
+  {
+    active : Bool;
+    body : Text;
+    createdAt : Timestamp__481935476;
+    id : Id__636858574;
+    title : Text
+  };
+type Block__631229888 =
+  {
+    blocked : UserId__1023572875;
+    blocker : UserId__1023572875;
+    createdAt : Timestamp__753029554
+  };
+type Block__647061928 =
+  {
+    blocked : UserId__39544917;
+    blocker : UserId__39544917;
+    createdAt : Timestamp__771871407
+  };
+type Boost__133840936 =
+  {
+    expiresAt : Timestamp__575683069;
+    startedAt : Timestamp__575683069;
+    userId : UserId__977971305
+  };
+type Boost__143029869 =
+  {
+    expiresAt : Timestamp__771871407;
+    startedAt : Timestamp__771871407;
+    userId : UserId__39544917
+  };
+type Counter__1022042902 = {var value : Id__274469729};
+type Data__1061330525<K, V> =
+  {var count : Nat__565224867; kvs : [var ?(K, V)]};
+type ExternalBlob__220559234 = Blob;
+type Gender__477195912 = Gender__94681853;
+type Gender__67974007 = {#female; #male; #nonBinary; #other};
+type Gender__94681853 = {#female; #male; #nonBinary; #other};
+type Id__274469729 = Nat;
+type Id__389469852 = Nat;
+type Id__485116967 = Id__389469852;
+type Id__546022544 = Id__389469852;
+type Id__548114050 = Id__389469852;
+type Id__636858574 = Id__389469852;
+type Id__905126857 = Id__389469852;
+type Internal__1060388275<K, V> =
+  {children : [var ?Node__1010487028<K, V>]; data : Data__1061330525<K, V>};
+type Leaf__8515789<K, V> = {data : Data__1061330525<K, V>};
+type LikeKind__460510325 = {#like; #superLike};
+type LikeKind__856088544 = {#like; #superLike};
+type Like__119787378 =
+  {
+    createdAt : Timestamp__858292743;
+    from : UserId__42729725;
+    kind : LikeKind__460510325;
+    to : UserId__42729725
+  };
+type Like__833531779 =
+  {
+    createdAt : Timestamp__771871407;
+    from : UserId__39544917;
+    kind : LikeKind__856088544;
+    to : UserId__39544917
+  };
+type Map__175655829<K, V> = Map__975833162<K, V>;
+type Map__925935234<K, V> =
+  {var root : Node__1010487028<K, V>; var size : Nat__565224867};
+type Map__975833162<K, V> = Map__925935234<K, V>;
+type Match__279161147 =
+  {
+    createdAt : Timestamp__155595065;
+    id : Id__485116967;
+    userA : UserId__559068366;
+    userB : UserId__559068366
+  };
+type Match__84033613 =
+  {
+    createdAt : Timestamp__771871407;
+    id : Id__274469729;
+    userA : UserId__39544917;
+    userB : UserId__39544917
+  };
+type MessageContent__220596951 = {#image : Photo__257051809; #text : Text};
+type MessageContent__425080112 = {#image : Photo__216396727; #text : Text};
+type Message__454780518 =
+  {
+    content : MessageContent__425080112;
+    createdAt : Timestamp__753029554;
+    id : Id__546022544;
+    matchId : Id__546022544;
+    sender : UserId__1023572875
+  };
+type Message__702227878 =
+  {
+    content : MessageContent__220596951;
+    createdAt : Timestamp__771871407;
+    id : Id__274469729;
+    matchId : Id__274469729;
+    sender : UserId__39544917
+  };
+type Nat__565224867 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__769816496 =
+  {
+    accessControlState : AccessControlState__204832294;
+    ads : Map__175655829<Id__274469729, Advertisement__191297534>;
+    bans : Map__175655829<UserId__39544917, Timestamp__771871407>;
+    blocks :
+      Map__175655829<(UserId__39544917, UserId__39544917), Block__647061928>;
+    boosts : Map__175655829<UserId__39544917, Boost__143029869>;
+    likes :
+      Map__175655829<(UserId__39544917, UserId__39544917), Like__833531779>;
+    matches :
+      Map__175655829<(UserId__39544917, UserId__39544917), Match__84033613>;
+    messages : Map__175655829<Id__274469729, Message__702227878>;
+    nextAdId : Counter__1022042902;
+    nextMatchId : Counter__1022042902;
+    nextMessageId : Counter__1022042902;
+    nextNotificationId : Counter__1022042902;
+    nextPaymentId : Counter__1022042902;
+    nextReportId : Counter__1022042902;
+    notifications : Map__175655829<Id__274469729, Notification__561474068>;
+    passes :
+      Map__175655829<(UserId__39544917, UserId__39544917), Pass__177393823>;
+    payments : Map__175655829<Id__274469729, Payment__809442622>;
+    profiles : Map__175655829<UserId__39544917, Profile__529753200>;
+    readState :
+      Map__175655829<(Id__274469729, UserId__39544917), Timestamp__771871407>;
+    reports : Map__175655829<Id__274469729, Report__556594439>;
+    stripeState : StripeState__843768948;
+    subscriptions : Map__175655829<UserId__39544917, Subscription__628920832>;
+    superLikes : Map__175655829<UserId__39544917, Nat>;
+    verifiedEmails : Map__175655829<Principal, Text>
+  };
+type Node__1010487028<K, V> =
+  {#internal : Internal__1060388275<K, V>; #leaf : Leaf__8515789<K, V>};
+type NotificationKind__631533211 = NotificationKind__998259266;
+type NotificationKind__660355567 =
+  {#likedYou; #newMatch; #newMessage; #subscriptionExpiry; #superLike};
+type NotificationKind__998259266 =
+  {#likedYou; #newMatch; #newMessage; #subscriptionExpiry; #superLike};
+type Notification__264708741 =
+  {
+    body : Text;
+    createdAt : Timestamp__515776233;
+    id : Id__905126857;
+    kind : NotificationKind__631533211;
+    read : Bool;
+    recipient : UserId__990689167;
+    title : Text
+  };
+type Notification__561474068 =
+  {
+    body : Text;
+    createdAt : Timestamp__771871407;
+    id : Id__274469729;
+    kind : NotificationKind__660355567;
+    read : Bool;
+    recipient : UserId__39544917;
+    title : Text
+  };
+type OldActor__512397517 = {};
+type Pass__177393823 =
+  {
+    createdAt : Timestamp__771871407;
+    from : UserId__39544917;
+    to : UserId__39544917
+  };
+type Pass__377376666 =
+  {
+    createdAt : Timestamp__858292743;
+    from : UserId__42729725;
+    to : UserId__42729725
+  };
+type PaymentStatus__1050999476 = {#cancelled; #failed; #pending; #succeeded};
+type PaymentStatus__449566059 = PaymentStatus__1050999476;
+type PaymentStatus__838381444 = {#cancelled; #failed; #pending; #succeeded};
+type Payment__477453043 =
+  {
+    amountCents : Nat;
+    createdAt : Timestamp__575683069;
+    currency : Text;
+    id : Id__548114050;
+    plan : ?PremiumPlan__1013645707;
+    status : PaymentStatus__449566059;
+    stripeSessionId : Text;
+    superLikeCount : Nat;
+    userId : UserId__977971305
+  };
+type Payment__809442622 =
+  {
+    amountCents : Nat;
+    createdAt : Timestamp__771871407;
+    currency : Text;
+    id : Id__274469729;
+    plan : ?PremiumPlan__814110863;
+    status : PaymentStatus__838381444;
+    stripeSessionId : Text;
+    superLikeCount : Nat;
+    userId : UserId__39544917
+  };
+type Photo__143131246 = Photo__873575415;
+type Photo__216396727 = Photo__873575415;
+type Photo__257051809 =
+  {blob : ExternalBlob__220559234; filename : Text; mimeType : Text};
+type Photo__873575415 =
+  {blob : ExternalBlob__220559234; filename : Text; mimeType : Text};
+type PremiumPlan__1013645707 = PremiumPlan__462581015;
+type PremiumPlan__462581015 = {#monthly; #yearly};
+type PremiumPlan__814110863 = {#monthly; #yearly};
+type Profile__529753200 =
+  {
+    bio : Text;
+    city : Text;
+    createdAt : Timestamp__771871407;
+    dateOfBirth : Nat;
+    displayName : Text;
+    gender : Gender__67974007;
+    interests : [Text];
+    photos : [Photo__257051809];
+    preferredAgeMax : Nat;
+    preferredAgeMin : Nat;
+    preferredGender : ?Gender__67974007;
+    primaryPhotoIndex : Nat;
+    relationshipPreference : RelationshipPreference__153740879;
+    updatedAt : Timestamp__771871407;
+    userId : UserId__39544917;
+    verified : Bool
+  };
+type Profile__901378260 =
+  {
+    bio : Text;
+    city : Text;
+    createdAt : Timestamp__144199673;
+    dateOfBirth : Nat;
+    displayName : Text;
+    gender : Gender__477195912;
+    interests : [Text];
+    photos : [Photo__143131246];
+    preferredAgeMax : Nat;
+    preferredAgeMin : Nat;
+    preferredGender : ?Gender__477195912;
+    primaryPhotoIndex : Nat;
+    relationshipPreference : RelationshipPreference__994987737;
+    updatedAt : Timestamp__144199673;
+    userId : UserId__914439993;
+    verified : Bool
+  };
+type RelationshipPreference__127663271 =
+  {#casualDating; #friendship; #longTerm; #openToAll};
+type RelationshipPreference__153740879 =
+  {#casualDating; #friendship; #longTerm; #openToAll};
+type RelationshipPreference__994987737 = RelationshipPreference__127663271;
+type ReportReason__763337723 =
+  {
+    #fakeProfile;
+    #harassment;
+    #inappropriateContent;
+    #other;
+    #spam;
+    #underage
+  };
+type ReportReason__846009946 =
+  {
+    #fakeProfile;
+    #harassment;
+    #inappropriateContent;
+    #other;
+    #spam;
+    #underage
+  };
+type ReportReason__855268704 = ReportReason__846009946;
+type ReportStatus__191268985 = ReportStatus__268462423;
+type ReportStatus__268462423 = {#dismissed; #open; #resolved};
+type ReportStatus__484818478 = {#dismissed; #open; #resolved};
+type Report__556594439 =
+  {
+    createdAt : Timestamp__771871407;
+    details : Text;
+    id : Id__274469729;
+    reason : ReportReason__763337723;
+    reported : UserId__39544917;
+    reporter : UserId__39544917;
+    status : ReportStatus__484818478
+  };
+type Report__691421927 =
+  {
+    createdAt : Timestamp__753029554;
+    details : Text;
+    id : Id__546022544;
+    reason : ReportReason__855268704;
+    reported : UserId__1023572875;
+    reporter : UserId__1023572875;
+    status : ReportStatus__191268985
+  };
+type StripeConfiguration__866172254 =
+  {allowedCountries : [Text]; secretKey : Text};
+type StripeConfiguration__915237244 =
+  {allowedCountries : [Text]; secretKey : Text};
+type StripeState__843768948 =
+  {var configuration : ?StripeConfiguration__915237244};
+type Subscription__628920832 =
+  {
+    active : Bool;
+    expiresAt : Timestamp__771871407;
+    plan : PremiumPlan__814110863;
+    startedAt : Timestamp__771871407;
+    userId : UserId__39544917
+  };
+type Subscription__864202031 =
+  {
+    active : Bool;
+    expiresAt : Timestamp__575683069;
+    plan : PremiumPlan__1013645707;
+    startedAt : Timestamp__575683069;
+    userId : UserId__977971305
+  };
+type Timestamp__144199673 = Timestamp__301639476;
+type Timestamp__155595065 = Timestamp__301639476;
+type Timestamp__301639476 = Int;
+type Timestamp__481935476 = Timestamp__301639476;
+type Timestamp__515776233 = Timestamp__301639476;
+type Timestamp__575683069 = Timestamp__301639476;
+type Timestamp__753029554 = Timestamp__301639476;
+type Timestamp__771871407 = Int;
+type Timestamp__858292743 = Timestamp__301639476;
+type UserId__1023572875 = UserId__158757552;
+type UserId__158757552 = Principal;
+type UserId__39544917 = Principal;
+type UserId__42729725 = UserId__158757552;
+type UserId__559068366 = UserId__158757552;
+type UserId__914439993 = UserId__158757552;
+type UserId__977971305 = UserId__158757552;
+type UserId__990689167 = UserId__158757552;
+type UserRole__256279894 = {#admin; #guest; #user};
+{
+  "00000000_000000" : OldActor__512397517 -> NewActor__769816496
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__175655829<Principal, UserRole__256279894>
+    };
+  stable ads :
+    {
+      var root : Node__1010487028<Id__389469852, Advertisement__9582083>;
+      var size : Nat__565224867
+    };
+  stable bans :
+    {
+      var root : Node__1010487028<UserId__158757552, Timestamp__301639476>;
+      var size : Nat__565224867
+    };
+  stable blocks :
+    {
+      var root :
+        Node__1010487028<(UserId__158757552, UserId__158757552),
+                          Block__631229888>;
+      var size : Nat__565224867
+    };
+  stable boosts :
+    {
+      var root : Node__1010487028<UserId__158757552, Boost__133840936>;
+      var size : Nat__565224867
+    };
+  stable likes :
+    {
+      var root :
+        Node__1010487028<(UserId__158757552, UserId__158757552),
+                          Like__119787378>;
+      var size : Nat__565224867
+    };
+  stable matches :
+    {
+      var root :
+        Node__1010487028<(UserId__158757552, UserId__158757552),
+                          Match__279161147>;
+      var size : Nat__565224867
+    };
+  stable messages :
+    {
+      var root : Node__1010487028<Id__389469852, Message__454780518>;
+      var size : Nat__565224867
+    };
+  stable nextAdId : {var value : Id__389469852};
+  stable nextMatchId : {var value : Id__389469852};
+  stable nextMessageId : {var value : Id__389469852};
+  stable nextNotificationId : {var value : Id__389469852};
+  stable nextPaymentId : {var value : Id__389469852};
+  stable nextReportId : {var value : Id__389469852};
+  stable notifications :
+    {
+      var root : Node__1010487028<Id__389469852, Notification__264708741>;
+      var size : Nat__565224867
+    };
+  stable passes :
+    {
+      var root :
+        Node__1010487028<(UserId__158757552, UserId__158757552),
+                          Pass__377376666>;
+      var size : Nat__565224867
+    };
+  stable payments :
+    {
+      var root : Node__1010487028<Id__389469852, Payment__477453043>;
+      var size : Nat__565224867
+    };
+  stable profiles :
+    {
+      var root : Node__1010487028<UserId__158757552, Profile__901378260>;
+      var size : Nat__565224867
+    };
+  stable readState :
+    {
+      var root :
+        Node__1010487028<(Id__389469852, UserId__158757552),
+                          Timestamp__301639476>;
+      var size : Nat__565224867
+    };
+  stable reports :
+    {
+      var root : Node__1010487028<Id__389469852, Report__691421927>;
+      var size : Nat__565224867
+    };
+  stable stripeState : {var configuration : ?StripeConfiguration__866172254};
+  stable subscriptions :
+    {
+      var root : Node__1010487028<UserId__158757552, Subscription__864202031>;
+      var size : Nat__565224867
+    };
+  stable superLikes :
+    {
+      var root : Node__1010487028<UserId__158757552, Nat>;
+      var size : Nat__565224867
+    };
+  stable verifiedEmails :
+    {var root : Node__1010487028<Principal, Text>; var size : Nat__565224867}
+};

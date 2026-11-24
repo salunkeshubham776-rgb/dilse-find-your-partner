@@ -1,0 +1,446 @@
+type _ImmutableObjectStorageRefillResult = 
+ record {
+   success: opt bool;
+   topped_up_amount: opt nat;
+ };
+type _ImmutableObjectStorageRefillInformation = record {
+                                                  proposed_top_up_amount:
+                                                   opt nat;};
+type _ImmutableObjectStorageCreateCertificateResult = 
+ record {
+   blob_hash: text;
+   method: text;
+ };
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserId = principal;
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec HttpHeader;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: HttpRequestResult;
+ };
+type Timestamp = int;
+type SubscriptionView = 
+ record {
+   active: bool;
+   expiresAt: Timestamp;
+   plan: PremiumPlan;
+   startedAt: Timestamp;
+ };
+type StripeSessionStatus = 
+ variant {
+   completed: record {
+                response: text;
+                userPrincipal: opt text;
+              };
+   failed: record {error: text;};
+ };
+type StripeConfiguration = 
+ record {
+   allowedCountries: vec text;
+   secretKey: text;
+ };
+type ShoppingItem = 
+ record {
+   currency: text;
+   priceInCents: nat;
+   productDescription: text;
+   productName: text;
+   quantity: nat;
+ };
+type RevenueSummary = 
+ record {
+   monthCents: nat;
+   todayCents: nat;
+   yearCents: nat;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type ReportStatus = 
+ variant {
+   dismissed;
+   open;
+   resolved;
+ };
+type ReportReason = 
+ variant {
+   fakeProfile;
+   harassment;
+   inappropriateContent;
+   other;
+   spam;
+   underage;
+ };
+type Report = 
+ record {
+   createdAt: Timestamp;
+   details: text;
+   id: Id;
+   reason: ReportReason;
+   reported: UserId;
+   reporter: UserId;
+   status: ReportStatus;
+ };
+type RelationshipPreference = 
+ variant {
+   casualDating;
+   friendship;
+   longTerm;
+   openToAll;
+ };
+type ProfileView = 
+ record {
+   age: nat;
+   bio: text;
+   city: text;
+   displayName: text;
+   gender: Gender;
+   interests: vec text;
+   photos: vec Photo;
+   premium: bool;
+   primaryPhotoIndex: nat;
+   relationshipPreference: RelationshipPreference;
+   userId: UserId;
+   verified: bool;
+ };
+type ProfileUpdate = 
+ record {
+   bio: text;
+   city: text;
+   displayName: text;
+   gender: Gender;
+   interests: vec text;
+   preferredAgeMax: nat;
+   preferredAgeMin: nat;
+   preferredGender: opt Gender;
+   relationshipPreference: RelationshipPreference;
+ };
+type PremiumStatus = 
+ record {
+   boostAvailable: bool;
+   dailyLikeLimit: nat;
+   likesUsedToday: nat;
+   premium: bool;
+   subscription: opt SubscriptionView;
+   superLikes: nat;
+ };
+type PremiumPlan = 
+ variant {
+   monthly;
+   yearly;
+ };
+type Photo = 
+ record {
+   "blob": ExternalBlob;
+   filename: text;
+   mimeType: text;
+ };
+type PaymentView = 
+ record {
+   amountCents: nat;
+   createdAt: Timestamp;
+   currency: text;
+   id: Id;
+   plan: opt PremiumPlan;
+   status: PaymentStatus;
+   superLikeCount: nat;
+ };
+type PaymentStatus = 
+ variant {
+   cancelled;
+   failed;
+   pending;
+   succeeded;
+ };
+type OnboardingInput = 
+ record {
+   bio: text;
+   city: text;
+   dateOfBirth: nat;
+   displayName: text;
+   gender: Gender;
+   interests: vec text;
+   preferredAgeMax: nat;
+   preferredAgeMin: nat;
+   preferredGender: opt Gender;
+   relationshipPreference: RelationshipPreference;
+ };
+type NotificationView = 
+ record {
+   body: text;
+   createdAt: Timestamp;
+   id: Id;
+   kind: NotificationKind;
+   read: bool;
+   title: text;
+ };
+type NotificationKind = 
+ variant {
+   likedYou;
+   newMatch;
+   newMessage;
+   subscriptionExpiry;
+   superLike;
+ };
+type MessageContent = 
+ variant {
+   image: Photo;
+   "text": text;
+ };
+type Message = 
+ record {
+   content: MessageContent;
+   createdAt: Timestamp;
+   id: Id;
+   matchId: Id;
+   sender: UserId;
+ };
+type MatchView = 
+ record {
+   createdAt: Timestamp;
+   id: Id;
+   lastMessageAt: opt Timestamp;
+   lastMessagePreview: opt text;
+   other: ProfileView;
+   unreadCount: nat;
+ };
+type LikeResult = 
+ variant {
+   liked;
+   limitReached;
+   matched: record {matchId: Id;};
+ };
+type LikeKind = 
+ variant {
+   like;
+   superLike;
+ };
+type Id = nat;
+type HttpRequestResult = 
+ record {
+   body: blob;
+   headers: vec HttpHeader;
+   status: nat;
+ };
+type HttpHeader = 
+ record {
+   name: text;
+   value: text;
+ };
+type Gender = 
+ variant {
+   female;
+   male;
+   nonBinary;
+   other;
+ };
+type ExternalBlob = blob;
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type DiscoverFilter = 
+ record {
+   ageMax: opt nat;
+   ageMin: opt nat;
+   city: opt text;
+   interests: opt vec text;
+   relationshipPreference: opt RelationshipPreference;
+   verifiedOnly: opt bool;
+ };
+type ConversationView = 
+ record {
+   lastMessageAt: opt Timestamp;
+   lastMessagePreview: opt text;
+   matchId: Id;
+   other: ProfileView;
+   unreadCount: nat;
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type Candidate = 
+ record {
+   profile: ProfileView;
+   score: nat;
+   sharedInterests: vec text;
+ };
+type Boost = 
+ record {
+   expiresAt: Timestamp;
+   startedAt: Timestamp;
+   userId: UserId;
+ };
+type ApiError = 
+ variant {
+   alreadyExists;
+   banned;
+   invalidInput: text;
+   likeLimitReached;
+   notFound;
+   notPremium;
+   paymentFailed: text;
+   unauthorized;
+   underage;
+ };
+type AdvertisementInput = 
+ record {
+   body: text;
+   title: text;
+ };
+type Advertisement = 
+ record {
+   active: bool;
+   body: text;
+   createdAt: Timestamp;
+   id: Id;
+   title: text;
+ };
+type AdminUserView = 
+ record {
+   banned: bool;
+   city: text;
+   createdAt: Timestamp;
+   displayName: text;
+   premium: bool;
+   userId: UserId;
+   verified: bool;
+ };
+type AdminOverview = 
+ record {
+   activeUsers: nat;
+   revenue: RevenueSummary;
+   totalUsers: nat;
+ };
+service : {
+  _immutableObjectStorageBlobsAreLive: (hashes: vec blob) -> (vec bool) query;
+  _immutableObjectStorageBlobsToDelete: () -> (vec blob) query;
+  _immutableObjectStorageConfirmBlobDeletion: (blobs: vec blob) -> ();
+  _immutableObjectStorageCreateCertificate: (blobHash: text) ->
+   (_ImmutableObjectStorageCreateCertificateResult);
+  _immutableObjectStorageRefillCashier: (refillInformation:
+   opt _ImmutableObjectStorageRefillInformation) ->
+   (_ImmutableObjectStorageRefillResult);
+  _immutableObjectStorageUpdateGatewayPrincipals: () -> ();
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  adminCreateAd: (input: AdvertisementInput) -> (Advertisement);
+  adminListAds: () -> (vec Advertisement) query;
+  adminListPayments: () -> (vec PaymentView) query;
+  adminListReports: () -> (vec Report) query;
+  adminListSubscriptions: () -> (vec SubscriptionView) query;
+  adminListUsers: (search: opt text) -> (vec AdminUserView) query;
+  adminOverview: () -> (AdminOverview) query;
+  adminResolveReport: (reportId: Id, status: ReportStatus) -> ();
+  adminSetAdActive: (adId: Id, active: bool) -> ();
+  adminSetBanned: (userId: UserId, banned: bool) -> ();
+  adminSetVerified: (userId: UserId, verified: bool) -> ();
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  completeOnboarding: (input: OnboardingInput) ->
+   (variant {
+      err: ApiError;
+      ok: ProfileView;
+    });
+  confirmCheckout: (sessionId: text) ->
+   (variant {
+      err: ApiError;
+      ok: SubscriptionView;
+    });
+  createCheckoutSession: (items: vec ShoppingItem, successUrl: text,
+   cancelUrl: text) -> (text);
+  discoverCandidates: (filter: DiscoverFilter) -> (vec Candidate) query;
+  execute: (qJson: text) -> (Result) query;
+  getApiDoc: () -> (text) query;
+  getCallerProfile: () -> (opt ProfileView) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getMatch: (matchId: Id) -> (opt MatchView) query;
+  getMessages: (matchId: Id) -> (vec Message) query;
+  getPremiumStatus: () -> (PremiumStatus) query;
+  getProfile: (userId: UserId) -> (opt ProfileView) query;
+  getStripeSessionStatus: (sessionId: text) -> (StripeSessionStatus);
+  isCallerAdmin: () -> (bool) query;
+  isStripeConfigured: () -> (bool) query;
+  likeUser: (target: UserId, kind: LikeKind) -> (LikeResult);
+  listActiveAds: () -> (vec Advertisement) query;
+  listConversations: () -> (vec ConversationView) query;
+  listMatches: () -> (vec MatchView) query;
+  listNotifications: () -> (vec NotificationView) query;
+  listPayments: () -> (vec PaymentView) query;
+  markAllNotificationsRead: () -> ();
+  markConversationRead: (matchId: Id) -> ();
+  markNotificationRead: (notificationId: Id) -> ();
+  notifySubscriptionExpiry: (expiresAt: Timestamp) -> ();
+  passUser: (target: UserId) -> ();
+  schema: () -> (text) query;
+  sendMessage: (matchId: Id, content: MessageContent) ->
+   (variant {
+      err: ApiError;
+      ok: Message;
+    });
+  setProfilePhotos: (photos: vec Photo, primaryIndex: nat) ->
+   (variant {
+      err: ApiError;
+      ok: ProfileView;
+    });
+  setStripeConfiguration: (config: StripeConfiguration) -> ();
+  startProfileBoost: () -> (variant {
+                              err: ApiError;
+                              ok: Boost;
+                            });
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+  unreadNotificationCount: () -> (nat) query;
+  updateProfile: (input: ProfileUpdate) ->
+   (variant {
+      err: ApiError;
+      ok: ProfileView;
+    });
+  whoLikedMe: () -> (vec ProfileView) query;
+}

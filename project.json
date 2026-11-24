@@ -1,0 +1,24 @@
+{
+  "overview": "DilSe is a mobile-first dating app where adults 18+ build a profile, discover compatible partners, match, chat privately and upgrade to premium.",
+  "features": [
+    "Sign in securely and complete an 18+ age-gated profile",
+    "Upload photos and describe yourself with bio, interests and partner preferences",
+    "Discover compatible profiles with city and age filters and smart recommendations",
+    "Like or pass profiles and get a match when the feeling is mutual",
+    "Chat privately with matches, share images, block and report",
+    "Upgrade to premium for unlimited likes, who liked you, boosts and advanced filters",
+    "Pay securely for monthly or yearly plans with automatic activation",
+    "Get in-app notifications for matches, messages, likes and subscription expiry",
+    "Admin dashboard for users, verification, complaints, bans, revenue and ads",
+    "Privacy policy and terms with no public phone numbers or exact locations"
+  ],
+  "category": "dating-app",
+  "tags": [
+    "dating",
+    "social",
+    "matching",
+    "chat",
+    "subscription"
+  ],
+  "last_updated": "2026-11-24T11:53:25.208Z"
+}
